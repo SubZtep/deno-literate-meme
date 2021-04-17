@@ -1,17 +1,16 @@
 let chalkin
 
-import { chalkin as c } from "https://deno.land/x/chalkin@v0.1.3/mod.ts";
+import { chalkin } from "https://deno.land/x/chalkin@v0.1.3/mod.ts"
 
-console.log("CCCCC", c)
+// console.log("CCCCC", c)
 // Deno.exit(0)
 
-const handler = {
-  get: (target, name) => {
-    return new Proxy(Function.prototype, handler)
+if (Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined) {
+  const handler = {
+    get: (target, name) => {
+      return new Proxy(Function.prototype, handler);
+    },
   }
-}
-
-if (Deno.env.get("DENO_DEPLOYMENT_ID") === undefined) {
   chalkin = new Proxy({}, handler)
 }
 
