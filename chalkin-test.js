@@ -1,15 +1,10 @@
-
-let chalkin
-if (Deno.env.get("DENO_DEPLOYMENT_ID") === undefined) {
-  chalkin = (await import("https://deno.land/x/chalkin@v0.1.3/mod.ts")).default
-} else {
-  const handler = {
-    get: (target, name) => {
-      return new Proxy(Function.prototype, handler);
-    },
-  }
-  chalkin = new Proxy({}, handler)
-}
+const chalkin = Deno.env.get("DENO_DEPLOYMENT_ID") === undefined
+  ? (await import("https://deno.land/x/chalkin@v0.1.3/mod.ts")).default
+  : new Proxy({}, {
+    get() {
+      return new Proxy(Function.prototype, this)
+    }
+  })
 
 console.log(chalkin.green("Hello, World!"));
 console.log(chalkin.green.bgRed("Hello, World!"));
