@@ -3,7 +3,7 @@
 // console.log("CCCCC", c)
 // Deno.exit(0)
 
-console.log("XXX", Deno.env.has("DENO_DEPLOYMENT_ID"))
+console.log("XXX", Deno.env.get("DENO_DEPLOYMENT_ID") === undefined)
 
 const handler = {
   get: (target, name) => {
