@@ -3,7 +3,7 @@
 // console.log("CCCCC", c)
 // Deno.exit(0)
 
-console.log("XXX", Deno.env.toObject())
+console.log("XXX", Deno.env.has("DENO_DEPLOYMENT_ID"))
 
 const handler = {
   get: (target, name) => {
