@@ -1,6 +1,6 @@
 
 let chalkin
-if (Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined) {
+if (Deno.env.get("DENO_DEPLOYMENT_ID") === undefined) {
   chalkin = (await import("https://deno.land/x/chalkin@v0.1.3/mod.ts")).default
 } else {
   const handler = {
