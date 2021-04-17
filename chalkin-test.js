@@ -1,6 +1,15 @@
-import chalkin from "https://deno.land/x/chalkin@v0.1.2/mod.ts"
-//import chalkin from "./chalkin_mod.ts"
+import c from "https://deno.land/x/chalkin@v0.1.2/mod.ts";
 
-console.log(chalkin.green("Hello, World!"))
-// console.log(chalkin["green"])
-// console.log(chalkin.werty)
+console.log("XXX", Deno.env.toObject())
+
+const handler = {
+  get: (target, name) => {
+    return new Proxy(Function.prototype, handler)
+  }
+}
+
+const chalkin = false ? c : new Proxy({}, handler)
+
+console.log(chalkin.green("Hello, World!"));
+console.log(chalkin.green.bgRed("Hello, World!"));
+console.log(chalkin.green.bgRed.bold("Hello, World!"));

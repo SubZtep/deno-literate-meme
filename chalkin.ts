@@ -1,5 +1,7 @@
 import { styles } from "https://deno.land/x/ansi_styles@1.0.1/mod.ts";
 
+//console.log("QQQ", styles)
+
 /**
  * Creates a new `Chalkin` which can be used to style text.
  *
@@ -9,7 +11,8 @@ import { styles } from "https://deno.land/x/ansi_styles@1.0.1/mod.ts";
  * console.log(chalkin.bold.underline.bgBlue.red("Hello,", "World!"));
  * ```
  */
-export default class Chalkin extends Function {
+// export default class Chalkin extends Function {
+export default class Chalkin {
   #openAll = "";
   #closeAll = "";
 
@@ -59,8 +62,23 @@ export default class Chalkin extends Function {
   bgGray!: this;
   bgGrey!: this;
 
+
+  // get(x: string) {
+  //   console.log("XXXXX", x)
+  //   return ""
+  // }
+
+  // __get(x: string) {
+  //   return null
+  //   // @ts-ignore
+  //   // return this[x]
+  //   // return this.style[x]
+  //   // return styles[x]
+  // }
+
   constructor() {
-    super("...args", "return this.style(...args)");
+    // super("...args", "return this.style(...args)");
+    // super(...args)
 
     const add = (
       name: string,
@@ -89,6 +107,7 @@ export default class Chalkin extends Function {
     for (const [bgColor, { open, close }] of Object.entries(styles.bgColor)) {
       add(bgColor, open, close, true);
     }
+
   }
 
   /**
